@@ -13,15 +13,15 @@ jobs:
     steps:
     - name: Prepare
       run: |
-          wget "https://github.com/hmlendea/imperator-rtw-style-locading-screens/releases/download/${{github.ref_name}}/rtw-style-locading-screens_${GITHUB_REF:11}.zip" -O "rtw-style-locading-screens.zip"
-          unzip "rtw-style-locading-screens.zip" -d "rtw-style-locading-screens/"
+          wget "https://github.com/hmlendea/imperator-rtw-style-loading-screens/releases/download/${{github.ref_name}}/rtw-style-loading-screens_${GITHUB_REF:11}.zip" -O "rtw-style-loading-screens.zip"
+          unzip "rtw-style-loading-screens.zip" -d "rtw-style-loading-screens/"
 
     - name: Upload
       uses: hmlendea/steam-workshop-update@latest
       with:
         appid: '859580'
-        itemid: '1745923673'
-        path: "rtw-style-locading-screens/"
+        itemid: '3513150774'
+        path: "rtw-style-loading-screens/"
         changenote: "[url=https://github.com/hmlendea/imperator-rtw-style-loading-screens/releases/tag/${{github.ref_name}}]Version ${{github.ref_name}}[/url]"
       env:
         STEAM_USERNAME: ${{secrets.STEAM_USERNAME}}
