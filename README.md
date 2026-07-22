@@ -1,37 +1,56 @@
-[![Donate](https://img.shields.io/badge/-%E2%99%A5%20Donate-%23ff69b4)](https://hmlendea.go.ro/fund.html) [![Latest GitHub release](https://img.shields.io/github/v/release/hmlendea/imperator-rtw-style-loading-screens)](https://github.com/hmlendea/imperator-rtw-style-loading-screens/releases/latest)
+[![Donate](https://img.shields.io/badge/-%E2%99%A5%20Donate-%23ff69b4)](https://hmlendea.go.ro/funding)
+[![Latest Release](https://img.shields.io/github/v/release/hmlendea/imperator-rtw-style-loading-screens)](https://github.com/hmlendea/imperator-rtw-style-loading-screens/releases/latest)
+[![Build Status](https://github.com/hmlendea/imperator-rtw-style-loading-screens/actions/workflows/steam-workshop.yml/badge.svg)](https://github.com/hmlendea/imperator-rtw-style-loading-screens/actions/workflows/steam-workshop.yml)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://gnu.org/licenses/gpl-3.0)
 
+# Imperator: Rome - RTW-Style Loading Screens
 
-# About
+A mod for Imperator: Rome that replaces the vanilla loading screens with artwork matching the art style of Rome: Total War (2004).
 
-This is a mod for Imperator Rome that changes the art style of the vanilla loading screens to the one from Rome Total War (2004 Original).
+## ✨ Features
 
-# Useful links
+- All vanilla loading screens match the RTW art style perfectly
+- 4K resolution
 
-- [GitHub page](https://github.com/hmlendea/rtw-style-locading-screens)
-- [Nexus Mods page](https://www.nexusmods.com/imperatorrome/mods/25)
-- [Steam Workshop page](https://steamcommunity.com/sharedfiles/filedetails/?id=3513150774)
+## 🚀 Usage
 
-# Features
+Install the mod and launch Imperator: Rome. The loading screens will automatically replace the vanilla ones.
 
- - All vanilla loading sceens match the RTW artstyle perfectly
- - 4K Resolution
+## 📦 Installation
 
-# Installation
+[![Get it from the Workshop](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/steam-workshop.png)](https://steamcommunity.com/sharedfiles/filedetails/?id=3513150774)
+[![Get it from the Nexus](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/nexus.png)](https://nexusmods.com/imperatorrome/mods/25)
+[![Get it from GitHub](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/github.png)](https://github.com/hmlendea/imperator-rtw-style-loading-screens/releases)
 
-[![Get it from the Workshop](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/steam-workshop.png)](https://steamcommunity.com/sharedfiles/filedetails/?id=3513150774) [![Get it from GitHub](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/github.png)](https://github.com/hmlendea/rtw-style-locading-screens/releases) [![Get it from the Nexus](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/nexus.png)](https://nexusmods.com/imperatorrome/mods/25)
+### Manual Installation
 
-## Manual installation
+- Download the [latest release](https://github.com/hmlendea/imperator-rtw-style-loading-screens/releases)
+- Extract the contents into your game's mod directory (delete the old files when updating)
 
- - Download the [latest release](https://github.com/hmlendea/rtw-style-locading-screens/releases)
- - Extract the contents into your game's mod directory (delete the old files when updating)
+## 🛠️ Development
 
-# Contributions
+### Requirements
+
+- An image editor with DDS format support (e.g. GIMP with the DDS plugin, or paint.net with the DDS plugin)
+
+## 🤝 Contributing
 
 You are welcome to bring any suggestion, feedback or modification to this project.
 
-There are a few ways you can do so:
+When doing so, please:
 
-1. You can create git pull requests for this repository (This requires git knowledge)
-2. You can raise a new "[issue](https://github.com/hmlendea/rtw-style-locading-screens/issues)" for this project
+- Keep the changes cross-platform
+- Keep the pull requests focused and consistent with the existing code style
 
-It would also be very helpful if you could provide a link to a source that can atest the authenticity of your intended changes, when possible.
+## 💝 Support
+
+Found a bug or have a suggestion? [Open an issue](https://github.com/hmlendea/imperator-rtw-style-loading-screens/issues)!
+
+If you find this project useful, consider [funding it](https://hmlendea.go.ro/funding) or giving a ⭐️ on GitHub!
+
+[![Donate](https://raw.githubusercontent.com/hmlendea/readme-assets/master/donate_generic.png)](https://hmlendea.go.ro/funding)
+
+## 📄 License
+
+Licensed under the `GNU General Public License v3.0` or later.
+See [LICENSE](./LICENSE) for details.
