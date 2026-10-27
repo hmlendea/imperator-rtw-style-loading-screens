@@ -42,6 +42,10 @@ When doing so, please:
 - Keep the changes cross-platform
 - Keep the pull requests focused and consistent with the existing code style
 
+## 📜 Code of Conduct
+
+This project follows the [Code of Conduct](./CODE_OF_CONDUCT.md).
+
 ## 💝 Support
 
 Found a bug or have a suggestion? [Open an issue](https://github.com/hmlendea/imperator-rtw-style-loading-screens/issues)!
