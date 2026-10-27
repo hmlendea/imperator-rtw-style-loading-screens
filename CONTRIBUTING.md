@@ -10,6 +10,8 @@ This document covers the guidelines and processes for contributing to this proje
   - [Code Contributions](#code-contributions)
 - [Code Style](#-code-style)
 - [License](#-license)
+- [Code of Conduct](#code-of-conduct)
+- [Security](#security)
 
 ## 🤝 How to Contribute
 

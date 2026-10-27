@@ -7,6 +7,22 @@
 
 A mod for Imperator: Rome that replaces the vanilla loading screens with artwork matching the art style of Rome: Total War (2004).
 
+## 📑 Table of Contents
+
+- [Features](#features)
+- [Usage](#usage)
+- [Installation](#installation)
+  - [Manual Installation](#manual-installation)
+- [Development](#development)
+  - [Requirements](#requirements)
+- [Contributing](#contributing)
+- [Code of Conduct](#code-of-conduct)
+- [Privacy and Data](#privacy-and-data)
+- [Security](#security)
+- [Architecture](#architecture)
+- [Support](#support)
+- [License](#license)
+
 ## ✨ Features
 
 - All vanilla loading screens match the RTW art style perfectly
@@ -53,6 +69,12 @@ Imperator: Rome - RTW-Style Loading Screens does not collect, process, transmit,
 ## 🔒 Security
 
 This project follows the [Security Policy](./SECURITY.md). Report vulnerabilities via [GitHub Security Advisories](https://github.com/hmlendea/imperator-rtw-style-loading-screens/security/advisories).
+
+## 🏗️ Architecture
+
+Imperator: Rome - RTW-Style Loading Screens is a static asset replacement mod that overrides the game's vanilla loading screens via the native mod loader. It contains no executable code, runtime, or network communication.
+
+See the [ARCHITECTURE.md](./ARCHITECTURE.md) for the system context, principal components, runtime flows, ownership boundaries, dependencies, constraints, and extension points.
 
 ## 💝 Support
 
