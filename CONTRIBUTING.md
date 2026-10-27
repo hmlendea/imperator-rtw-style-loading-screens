@@ -65,3 +65,7 @@ Follow the project's coding standards:
 ## 📄 License
 
 By contributing, you agree that your contributions will be licensed under the GNU General Public License v3.0.
+
+## 📋 Code of Conduct
+
+This project follows the [Code of Conduct](./CODE_OF_CONDUCT.md).
