@@ -46,6 +46,10 @@ When doing so, please:
 
 This project follows the [Code of Conduct](./CODE_OF_CONDUCT.md).
 
+## 🛡️ Privacy and Data
+
+Imperator: Rome - RTW-Style Loading Screens does not collect, process, transmit, or persist any personal data. The mod consists solely of DDS image files that replace vanilla loading screens. For the detailed description, see [PRIVACY.md](./PRIVACY.md).
+
 ## 💝 Support
 
 Found a bug or have a suggestion? [Open an issue](https://github.com/hmlendea/imperator-rtw-style-loading-screens/issues)!
