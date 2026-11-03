@@ -76,6 +76,33 @@ Imperator: Rome - RTW-Style Loading Screens is a static asset replacement mod th
 
 See the [ARCHITECTURE.md](./ARCHITECTURE.md) for the system context, principal components, runtime flows, ownership boundaries, dependencies, constraints, and extension points.
 
+## 📚 Documentation
+
+Comprehensive documentation for maintainers and contributors is available in the [`docs/`](./docs/) directory:
+
+- [Documentation Index](./docs/INDEX.md) — Master catalogue with navigation
+- [Architecture](./docs/architecture.md) — System architecture (complements root ARCHITECTURE.md)
+- [Build & Deployment](./docs/build-and-deployment.md) — Release process and publishing
+- [Change Guide](./docs/change-guide.md) — How to modify assets and configuration
+- [Design Decisions](./docs/design-decisions.md) — Key decisions with rationale
+- [Testing](./docs/testing.md) — Validation procedures
+- [Troubleshooting](./docs/troubleshooting.md) — Common issues and resolutions
+- [FAQ](./docs/faq.md) — Frequently asked questions
+- [Quick Start](./docs/quick-start.md) — 5-minute onboarding
+- [Security](./docs/security.md) — Implementation-specific security (complements root SECURITY.md)
+- [Integrations](./docs/integrations.md) — External system interfaces
+- [Invariants](./docs/invariants.md) — Must-hold properties
+- [Error Handling](./docs/error-handling.md) — Failure modes and recovery
+- [Logging](./docs/logging.md) — Observability
+- [Dependencies](./docs/dependencies.md) — External dependencies
+- [Configuration](./docs/configuration.md) — Mod configuration
+- [Data Model](./docs/data-model.md) — Asset schema and formats
+- [Repository Structure](./docs/repository-structure.md) — Directory tree and file inventory
+- [Repository Overview](./docs/repository-overview.md) — High-level purpose and scope
+- [Ambiguities & Open Questions](./docs/ambiguities-and-open-questions.md) — Unresolved items
+- [State & Persistence](./docs/state-and-persistence.md) — State model (none) and asset lifecycle
+- [Documentation Maintenance](./docs/documentation-maintenance.md) — Doc update procedures
+
 ## 💝 Support
 
 Found a bug or have a suggestion? [Open an issue](https://github.com/hmlendea/imperator-rtw-style-loading-screens/issues)!
