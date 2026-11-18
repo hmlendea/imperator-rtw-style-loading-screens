@@ -111,10 +111,9 @@ git tag -a v1.0.1 -m "Release v1.0.1: Replace load_3.dds"
 # 4. Push tag (triggers GitHub Actions)
 git push origin v1.0.1
 
-# 5. Verify Actions workflow completes
+# 5. Publish the GitHub release for the tag
+# 6. Verify the Actions workflows complete
 # https://github.com/hmlendea/imperator-rtw-style-loading-screens/actions
-
-# 6. Manually upload same ZIP to Nexus Mods
 ```
 
 ### Rollback Procedure
@@ -159,7 +158,9 @@ git push --tags
 | `descriptor.mod` supported_version | Yes | Yes | Full game test |
 | `descriptor.mod` name/path/tags | **No** | N/A | Breaks mod |
 | `thumbnail.png` | Yes | Yes | Launcher check |
-| `.github/workflows/steam-workshop.yml` | Rarely | No | Actions test |
+| `.github/workflows/github-release.yml` | Rarely | No | Release test |
+| `.github/workflows/nexus-mods-release.yml` | Rarely | No | Actions test |
+| `.github/workflows/steam-workshop-release.yml` | Rarely | No | Actions test |
 | Root docs (README, etc.) | Yes | No | Visual |
 
 ## Emergency Procedures
@@ -181,7 +182,7 @@ git push --tags
 
 1. Check GitHub Actions logs
 2. Fix workflow / rotate secrets
-3. Re-run workflow or manual upload
+3. Re-run the workflow or manually upload as a fallback
 4. If tag already pushed: delete and re-tag (see Rollback)
 
 ## Checklist for Every Change

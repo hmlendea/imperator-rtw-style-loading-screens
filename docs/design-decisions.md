@@ -74,12 +74,12 @@
 
 **Context**: Imperator: Rome primarily on Steam; Workshop integration native.
 
-**Decision**: Automate Steam Workshop publishing via GitHub Actions; manual Nexus/GitHub.
+**Decision**: Automate Steam Workshop, Nexus Mods, and GitHub Release publishing via GitHub Actions.
 
 **Consequences**:
 - ✅ Seamless for Steam players (auto-update)
 - ✅ Single source of truth (Git tags)
-- ❌ Nexus/GitHub require manual steps
+- ✅ All three channels published automatically
 - ❌ Workshop item ID immutable (cannot migrate)
 
 ### ADR-006: Git Tags as Release Triggers (`v*.*.*`)
@@ -88,7 +88,7 @@
 
 **Context**: Need automated release pipeline.
 
-**Decision**: Semantic version tags trigger GitHub Actions → Workshop upload.
+**Decision**: Semantic version tags trigger the Steam Workshop and Nexus Mods workflows; publishing the GitHub release triggers the GitHub Release workflow.
 
 **Consequences**:
 - ✅ Clear version history

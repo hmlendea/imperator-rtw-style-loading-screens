@@ -10,8 +10,8 @@ This mod integrates with three external systems: the Imperator: Rome game engine
 |-------------|-----------|----------|----------------|-----------|
 | Imperator: Rome Mod Loader | Inbound (game reads mod) | Clausewitz script + VFS | None (local) | Game launch |
 | Steam Workshop | Outbound (publish) | Steam Web API | Steam credentials (secrets) | Per release tag |
-| Nexus Mods | Outbound (publish) | Web UI / API | Nexus account | Per release (manual) |
-| GitHub Releases | Outbound (artefact) | GitHub API | GitHub token (implicit) | Per release tag |
+| Nexus Mods | Outbound (publish) | Nexus Mods API (upload action) | Nexus API key (secret) | Per release tag |
+| GitHub Releases | Outbound (artefact) | GitHub API | GitHub token (implicit) | Per release publication |
 
 ## Imperator: Rome Mod Loader
 
@@ -59,26 +59,40 @@ This mod integrates with three external systems: the Imperator: Rome game engine
 ### Workflow
 
 ```yaml
-# .github/workflows/steam-workshop.yml
+# .github/workflows/steam-workshop-release.yml
 on:
   push:
     tags:
     - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to release'
+        required: true
 
 jobs:
   release:
     steps:
-    - name: Prepare
+    - uses: actions/checkout@v7
+      with:
+        ref: ${{ env.VERSION }}
+    - name: Update the mod version
       run: |
-          wget "https://github.com/.../releases/download/${{github.ref_name}}/rtw-style-loading-screens_${GITHUB_REF:11}.zip" -O "rtw-style-loading-screens.zip"
-          unzip "rtw-style-loading-screens.zip" -d "rtw-style-loading-screens/"
+        MOD_VERSION="${VERSION#v}"
+        # set version= in both descriptor files
+    - name: Build the release archive
+      run: |
+        zip -r "release.zip" "rtw-style-loading-screens/" "rtw-style-loading-screens.mod"
+    - name: Extract the release archive
+      run: |
+        unzip "release.zip" -d "release/"
     - name: Upload
       uses: hmlendea/steam-workshop-update@latest
       with:
-        appid: '859580'
-        itemid: '3513150774'
-        path: "rtw-style-loading-screens/"
-        changenote: "[url=...]Version ${{github.ref_name}}[/url]"
+        appid: 859580
+        itemid: 3513150774
+        path: "release/rtw-style-loading-screens/"
+        changenote: "[url=...]Version ${{env.VERSION}}[/url]"
 ```
 
 ### Secrets
@@ -87,7 +101,7 @@ jobs:
 |--------|---------|----------|
 | `STEAM_USERNAME` | Steam account login | On compromise |
 | `STEAM_PASSWORD` | Steam account password | On compromise |
-| `STEAM_2FASEED` | 2FA shared secret (headless) | On compromise |
+| `STEAM_2FA_SEED` | 2FA shared secret (headless) | On compromise |
 
 ### Failure Modes
 
@@ -95,7 +109,7 @@ jobs:
 |---------|-------|----------|
 | Auth failed | Wrong secrets | Rotate secrets; re-run workflow |
 | Item ID invalid | Changed ID | **Never change ID** |
-| ZIP corrupt | Download failed | Re-run workflow |
+| ZIP build failed | Checkout or archive error | Re-run workflow |
 | Rate limited | Steam API limits | Wait; re-run |
 
 ### Monitoring
@@ -112,29 +126,26 @@ jobs:
 |--------|---------------|
 | **Game** | Imperator: Rome |
 | **Mod ID** | `25` (immutable) |
+| **File ID** | `527539` (immutable) |
 | **Category** | Interface / Visuals |
 | **Artefact** | Same ZIP as Workshop |
-| **Metadata** | Version, changelog, tags via web UI |
-| **Update Method** | Manual upload |
+| **Metadata** | Version, changelog set by the workflow |
+| **Update Method** | `Nexus-Mods/upload-action` GitHub Action |
 
 ### Process
 
-1. GitHub Actions creates Release with ZIP
-2. Maintainer downloads ZIP from Releases
-3. Maintainer uploads to Nexus via web UI
-4. Maintainer updates version/changelog on Nexus page
+1. A `v*.*.*` tag push or manual dispatch starts `nexus-mods-release.yml`
+2. The workflow checks out the tag and sets the descriptor version
+3. It zips `rtw-style-loading-screens/` and `rtw-style-loading-screens.mod`
+4. It uploads `rtw-style-loading-screens.zip` to Nexus Mods, archiving the previous version
 
 ### Failure Modes
 
 | Failure | Cause | Recovery |
 |---------|-------|----------|
-| Upload failed | Network / file size | Retry; check limits |
-| Version mismatch | Forgot to update | Edit Nexus page |
-| Category wrong | UI error | Edit Nexus page |
-
-### Automation Gap
-
-**No automated Nexus upload.** Requires manual step per release. Future improvement: Nexus API integration.
+| Upload failed | Network / invalid API key | Rotate key; re-run workflow |
+| Version mismatch | Tag not checked out | Re-run with the correct `tag` input |
+| Category wrong | Action input drift | Fix the workflow; re-run |
 
 ## GitHub Releases
 
@@ -142,14 +153,14 @@ jobs:
 
 | Aspect | Specification |
 |--------|---------------|
-| **Trigger** | Git tag `v*.*.*` |
-| **Artefact** | ZIP of `rtw-style-loading-screens/` |
-| **Release Notes** | Auto-generated from commits |
+| **Trigger** | Published GitHub release |
+| **Artefact** | `rtw-style-loading-screens_<version>.zip` of `rtw-style-loading-screens/` and `rtw-style-loading-screens.mod` |
+| **Release Notes** | Written by the maintainer; left unmodified |
 | **Visibility** | Public |
 
 ### Role
 
-- Primary artefact store for Workshop workflow (downloads ZIP from here)
+- Published by `github-release.yml` through `softprops/action-gh-release`
 - Manual install source for players
 - Source archive for transparency
 
@@ -157,31 +168,29 @@ jobs:
 
 | Failure | Cause | Recovery |
 |---------|-------|----------|
-| Release not created | Tag format wrong | Use `v*.*.*` format |
-| ZIP missing | Actions artifact failed | Check Actions logs |
+| Release not created | Release not published | Publish the release for the tag |
+| ZIP missing | Workflow failed | Check Actions logs; re-run the job |
 
 ## Integration Dependencies
 
 ```
 Git Tag (v*.*.*)
-    → GitHub Release (auto)
     → GitHub Actions (triggered)
-        → Download Release ZIP
         → Steam Workshop Upload (auto)
-    → Maintainer (manual)
-        → Download Release ZIP
-        → Nexus Mods Upload (manual)
+        → Nexus Mods Upload (auto)
+    → GitHub Release (published)
+        → GitHub Release ZIP attachment (auto)
 ```
 
 ## Version Synchronisation
 
-All channels must receive identical ZIP artefact per version:
+All channels receive the same mod content per version, each packaged independently from the checked-out tag:
 
 | Channel | Version Source | Sync Method |
 |---------|----------------|-------------|
-| GitHub Release | Git tag | Automatic |
-| Steam Workshop | Git tag → Actions | Automatic |
-| Nexus Mods | Git tag → Manual | Manual |
+| GitHub Release | Release tag | Automatic (`github-release.yml`) |
+| Steam Workshop | Tag → Actions | Automatic (`steam-workshop-release.yml`) |
+| Nexus Mods | Tag → Actions | Automatic (`nexus-mods-release.yml`) |
 
 **Invariant**: Same ZIP content across all channels for a given version.
 

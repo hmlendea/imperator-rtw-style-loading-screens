@@ -86,11 +86,13 @@ System-wide invariants are properties that must remain true across all operation
 - PNG format
 - Resolution suitable for launcher (~1280×720)
 
-### Distribution Pipeline (`.github/workflows/steam-workshop.yml`)
+### Distribution Pipeline (`.github/workflows/`)
 
-- Triggered on tag `v*.*.*`
-- Uploads ZIP containing `rtw-style-loading-screens/`
-- Uses correct secrets (`STEAM_USERNAME`, `STEAM_PASSWORD`, `STEAM_2FASEED`)
+- `github-release.yml` triggers on published releases and attaches `rtw-style-loading-screens_<version>.zip`
+- `nexus-mods-release.yml` triggers on `v*.*.*` tags or manual dispatch and uploads to Nexus file ID `527539`
+- `steam-workshop-release.yml` triggers on `v*.*.*` tags or manual dispatch and uploads to Workshop item `3513150774`
+- All three set the descriptor version from the tag and archive `rtw-style-loading-screens/` with `rtw-style-loading-screens.mod`
+- Uses correct secrets (`STEAM_USERNAME`, `STEAM_PASSWORD`, `STEAM_2FA_SEED`, `NEXUSMODS_API_KEY`)
 
 ## Invariant Violation Handling
 

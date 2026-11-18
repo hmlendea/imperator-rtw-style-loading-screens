@@ -89,7 +89,7 @@ This mod has **no runtime error handling** because it contains no executable cod
 | Corrupt asset shipped | Patch release with fixed asset |
 | Wrong supported_version | Patch release with corrected descriptor |
 | Workshop publish failed | Fix workflow; re-run or manual upload |
-| Nexus upload failed | Retry upload; check file size/format |
+| Nexus upload failed | Rotate `NEXUSMODS_API_KEY`; re-run workflow |
 
 ## Error Prevention
 

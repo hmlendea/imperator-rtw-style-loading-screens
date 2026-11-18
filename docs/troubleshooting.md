@@ -93,7 +93,6 @@ ls -1 <game>/mod/rtw-style-loading-screens/gfx/loadingscreens/load_*.dds | wc -l
 | GitHub Actions workflow failed | Check Actions tab; re-run or fix error |
 | Steam client not checking | Restart Steam; verify download region |
 | Workshop item ID changed | **Never change item ID** — would orphan all subscribers |
-
 **Debug**:
 1. Check GitHub Actions: `https://github.com/hmlendea/imperator-rtw-style-loading-screens/actions`
 2. Verify tag exists: `git tag -l "v*"`
@@ -101,16 +100,16 @@ ls -1 <game>/mod/rtw-style-loading-screens/gfx/loadingscreens/load_*.dds | wc -l
 
 ### Nexus Mods Upload Issues
 
-**Symptoms**: Manual upload fails or version not visible.
+**Symptoms**: Automated upload fails or version not visible.
 
 **Causes & Solutions**:
 
 | Cause | Solution |
 |-------|----------|
-| Wrong file format | Upload ZIP of `rtw-style-loading-screens/` directory |
-| Version metadata mismatch | Update version field on Nexus edit page |
-| File size limit | Nexus has limits; DDS files ~50-100 MB total — within limits |
-| Category mismatch | Ensure "Imperator: Rome" category selected |
+| `NEXUSMODS_API_KEY` invalid or expired | Rotate the secret; re-run the workflow |
+| Tag not reachable | Re-run `nexus-mods-release.yml` with the correct `tag` input |
+| File ID changed | **Never change file ID** — restore `527539` |
+| Category mismatch | Keep `category: main` |
 
 ### Manual Installation Not Working
 

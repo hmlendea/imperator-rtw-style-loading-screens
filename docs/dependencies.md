@@ -18,7 +18,7 @@
 | **Steam Workshop** | CDN / API | Content delivery to Steam users | Workshop subscribers don't receive updates |
 | **Nexus Mods** | CDN / Web UI | Content delivery to Nexus users | Nexus users don't receive updates |
 | **GitHub Releases** | Artefact storage | Release ZIP hosting | Manual installers can't download |
-| **GitHub Actions** | CI/CD | Automated Workshop publishing | Manual Workshop upload required |
+| **GitHub Actions** | CI/CD | Automated GitHub Release, Nexus Mods, and Workshop publishing | Manual publishing required |
 
 ### Development Dependencies
 
@@ -108,7 +108,7 @@ Player → Subscribe/Download → Game Mod Directory → Game VFS
 |------------|----------------|---------|
 | Game major version | Game update | Update `supported_version`, test, release |
 | Steam Workshop API | Valve changes | Update workflow action version |
-| Nexus Mods API | Nexus changes | Manual upload adaptation |
+| Nexus Mods API | Nexus changes | Update `Nexus-Mods/upload-action` version |
 | DDS format support | Game engine change | Re-export assets |
 
 No automated dependency scanning (Dependabot, Renovate, etc.) applicable.

@@ -43,7 +43,7 @@
 | Asset presence | 100% (10/10 files) | File count check |
 | Asset validity | 100% (manual) | Visual inspection |
 | Game integration | 100% (manual) | In-game verification |
-| Distribution | 100% (manual) | Workshop/Nexus/GitHub install test |
+| Distribution | 100% (automated) | Workshop/Nexus/GitHub install test |
 | Compatibility | Single version (2.0.*) | Targeted testing |
 
 ## Test Environments

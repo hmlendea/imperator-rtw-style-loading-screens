@@ -68,12 +68,11 @@ ls rtw-style-loading-screens/gfx/loadingscreens/
 ### Release Process (Maintainers Only)
 
 ```bash
-# Update descriptor.mod version
 # Commit changes
 git tag v1.0.1
 git push --tags
-# GitHub Actions: packages ZIP, publishes to Steam Workshop
-# Maintainer: manually upload same ZIP to Nexus Mods
+# Publish the GitHub release for the tag
+# GitHub Actions: attaches the release ZIP, publishes to Steam Workshop and Nexus Mods
 ```
 
 ## For Documentation Readers

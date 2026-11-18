@@ -78,9 +78,8 @@ See [CONTRIBUTING.md](../CONTRIBUTING.md). Requires DDS-capable image editor.
 5. Submit PR
 
 ### How are releases made?
-Maintainer tags commit: `git tag v1.0.1 && git push --tags`
-GitHub Actions packages ZIP and publishes to Steam Workshop.
-Maintainer manually uploads to Nexus Mods.
+Maintainer tags commit: `git tag v1.0.1 && git push --tags`, then publishes the GitHub release.
+GitHub Actions attaches the release ZIP and publishes to Steam Workshop and Nexus Mods automatically.
 
 ### Can I use these assets in my mod?
 Yes, under GPL v3.0. See [LICENSE](../LICENSE). Derivative works must be GPL v3.0.
@@ -96,7 +95,7 @@ Yes, under GPL v3.0. See [LICENSE](../LICENSE). Derivative works must be GPL v3.
 Immutable identifier. Changing it would orphan all 3513150774 subscribers. Never change.
 
 ### Does Nexus Mods auto-update?
-No. Manual upload required per release.
+Yes. `nexus-mods-release.yml` uploads each release to Nexus Mods automatically.
 
 ## Troubleshooting
 

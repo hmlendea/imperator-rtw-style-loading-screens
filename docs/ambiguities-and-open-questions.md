@@ -46,11 +46,11 @@
 
 **Question**: Can Nexus Mods upload be automated via API?
 
-**Status**: Nexus has API but requires maintainer token; not yet implemented.
+**Status**: Resolved. `nexus-mods-release.yml` uploads through `Nexus-Mods/upload-action` using the `NEXUSMODS_API_KEY` secret.
 
-**Impact**: Manual step per release; risk of human error.
+**Impact**: None; uploads are automated per release.
 
-**Resolution**: Investigate Nexus API; implement if feasible.
+**Resolution**: Automated upload in place; keep the action version current.
 
 ### 6. Linux/macOS Native Testing
 
@@ -111,7 +111,6 @@
 | No descriptor syntax validation | Low | Maintainer | Add CI check |
 | No multi-platform test matrix | Low | Maintainer | Document tested platforms |
 | No source asset backup in repo | Low | Maintainer | External backup documented |
-| Nexus upload not automated | Low | Maintainer | API integration |
 
 ## Decisions Deferred
 
