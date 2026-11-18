@@ -34,23 +34,34 @@ All configuration is **build-time / release-time** and embedded in static files.
 
 **Mutable**: Only by replacing files (no add/remove without game API change)
 
-### 3. Distribution Workflow (`.github/workflows/steam-workshop.yml`)
+### 3. Distribution Workflows (`.github/workflows/`)
 
-**Location**: `.github/workflows/steam-workshop.yml`
+**Location**: `.github/workflows/github-release.yml`, `.github/workflows/nexus-mods-release.yml`, `.github/workflows/steam-workshop-release.yml`
 
-**Fields**:
+**GitHub Release fields**: archive label `rtw-style-loading-screens`, archived assets `"rtw-style-loading-screens/" "rtw-style-loading-screens.mod"`
+
+**Nexus Mods fields**:
+
+| Field | Value | Purpose |
+|-------|-------|---------|
+| `file_id` | `527539` | Nexus Mods file ID (immutable) |
+| `display_name` | `rtw-style-loading-screens.zip` | Upload filename |
+| `category` | `main` | Nexus category |
+
+**Steam Workshop fields**:
 
 | Field | Value | Purpose |
 |-------|-------|---------|
 | `appid` | `859580` | Imperator: Rome Steam App ID |
 | `itemid` | `3513150774` | Workshop item ID (immutable) |
 | `changenote` | BBCode template | Release notes format |
-| `path` | `rtw-style-loading-screens/` | Directory to upload |
+| `path` | `release/rtw-style-loading-screens/` | Directory to upload |
 
 **Secrets** (GitHub repository secrets):
 - `STEAM_USERNAME`
 - `STEAM_PASSWORD`
-- `STEAM_2FASEED`
+- `STEAM_2FA_SEED`
+- `NEXUSMODS_API_KEY`
 
 ## Configuration Precedence
 
@@ -61,7 +72,9 @@ No precedence hierarchy exists. Single source per concern:
 | Mod identity | `descriptor.mod` | None |
 | Game compatibility | `descriptor.mod` `supported_version` | None |
 | Asset content | DDS files | None |
-| Workshop publishing | Workflow YAML + secrets | None |
+| GitHub Release publishing | `github-release.yml` + release tag | None |
+| Nexus Mods publishing | `nexus-mods-release.yml` + `NEXUSMODS_API_KEY` | None |
+| Workshop publishing | `steam-workshop-release.yml` + Steam secrets | None |
 
 ## Runtime Configuration
 
@@ -120,8 +133,8 @@ For future agents:
 
 1. **Mod metadata**: `rtw-style-loading-screens/descriptor.mod`
 2. **Asset inventory**: `ls rtw-style-loading-screens/gfx/loadingscreens/`
-3. **Publishing config**: `.github/workflows/steam-workshop.yml`
+3. **Publishing config**: `.github/workflows/{github-release,nexus-mods-release,steam-workshop-release}.yml`
 4. **Secrets**: GitHub repository settings (not in repo)
-5. **Distribution IDs**: README badges, workflow `itemid`, Nexus page
+5. **Distribution IDs**: README badges, workflow `itemid`/`file_id`, Nexus page
 
 No other configuration exists. No `.env` files, no JSON/YAML config, no registry, no database.

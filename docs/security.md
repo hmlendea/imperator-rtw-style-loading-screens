@@ -54,8 +54,8 @@ This document complements the root [SECURITY.md](../SECURITY.md) by elaborating 
    - Mitigation: PR review; signed commits; limited maintainer access
 
 2. **Supply Chain Compromise**
-   - Vector: GitHub Actions compromise / Steam credential theft
-   - Impact: Malicious asset published to Workshop
+   - Vector: GitHub Actions compromise / Steam or Nexus credential theft
+   - Impact: Malicious asset published to Workshop or Nexus Mods
    - Mitigation: Pinned Actions; secret rotation; 2FA
 
 ### Out-of-Scope
@@ -78,9 +78,8 @@ This document complements the root [SECURITY.md](../SECURITY.md) by elaborating 
 ### Release Process
 
 - Tag-based triggers (immutable)
-- GitHub Actions downloads from Release (verified artefact)
-- Steam secrets in GitHub Secrets (not repo)
-- Manual Nexus upload (human verification)
+- GitHub Actions builds the archive from the checked-out tag (verified artefact)
+- Steam and Nexus secrets in GitHub Secrets (not repo)
 
 ### Asset Validation
 
@@ -92,8 +91,8 @@ This document complements the root [SECURITY.md](../SECURITY.md) by elaborating 
 
 ### Malicious Asset Published
 
-1. Revoke Steam secrets immediately
-2. Delete Workshop version (if possible) or publish clean version
+1. Revoke Steam secrets and `NEXUSMODS_API_KEY` immediately
+2. Delete Workshop/Nexus version (if possible) or publish clean version
 3. Rotate all credentials
 4. Investigate source (compromised account vs supply chain)
 5. Notify users via GitHub release notes / Workshop changenote
@@ -120,6 +119,6 @@ This document complements the root [SECURITY.md](../SECURITY.md) by elaborating 
 - [ ] No new dependencies added
 - [ ] DDS files visually inspected
 - [ ] Descriptor unchanged (except version)
-- [ ] Workshop workflow uses pinned Action version
+- [ ] Workshop and Nexus workflows use the pinned action versions
 - [ ] Secrets not in logs
 - [ ] Release ZIP matches repo state

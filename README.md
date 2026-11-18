@@ -1,6 +1,6 @@
 [![Donate](https://img.shields.io/badge/-%E2%99%A5%20Donate-%23ff69b4)](https://hmlendea.go.ro/funding)
 [![Latest Release](https://img.shields.io/github/v/release/hmlendea/imperator-rtw-style-loading-screens)](https://github.com/hmlendea/imperator-rtw-style-loading-screens/releases/latest)
-[![Build Status](https://github.com/hmlendea/imperator-rtw-style-loading-screens/actions/workflows/steam-workshop.yml/badge.svg)](https://github.com/hmlendea/imperator-rtw-style-loading-screens/actions/workflows/steam-workshop.yml)
+[![Build Status](https://github.com/hmlendea/imperator-rtw-style-loading-screens/actions/workflows/github-release.yml/badge.svg)](https://github.com/hmlendea/imperator-rtw-style-loading-screens/actions/workflows/github-release.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://gnu.org/licenses/gpl-3.0)
 
 # Imperator: Rome - RTW-Style Loading Screens
@@ -15,6 +15,7 @@ A mod for Imperator: Rome that replaces the vanilla loading screens with artwork
   - [Manual Installation](#manual-installation)
 - [Development](#development)
   - [Requirements](#requirements)
+- [GitHub Actions](#-github-actions)
 - [Contributing](#contributing)
 - [Code of Conduct](#code-of-conduct)
 - [Privacy and Data](#privacy-and-data)
@@ -48,6 +49,14 @@ Install the mod and launch Imperator: Rome. The loading screens will automatical
 ### Requirements
 
 - An image editor with DDS format support (e.g. GIMP with the DDS plugin, or paint.net with the DDS plugin)
+
+## ⚙️ GitHub Actions
+
+| Workflow | Purpose | What it does |
+|----------|---------|--------------|
+| [ github-release.yml ](https://github.com/hmlendea/imperator-rtw-style-loading-screens/blob/master/.github/workflows/github-release.yml) | GitHub Release | Builds `rtw-style-loading-screens_<version>.zip` from the published tag, setting the descriptor version first, and attaches it to the GitHub release |
+| [ nexus-mods-release.yml ](https://github.com/hmlendea/imperator-rtw-style-loading-screens/blob/master/.github/workflows/nexus-mods-release.yml) | Release to Nexus Mods | Runs on a `v*.*.*` tag push or manual dispatch: checks out the tag, sets the descriptor version, zips the descriptor and content directory, and uploads `rtw-style-loading-screens.zip` to Nexus Mods |
+| [ steam-workshop-release.yml ](https://github.com/hmlendea/imperator-rtw-style-loading-screens/blob/master/.github/workflows/steam-workshop-release.yml) | Release to Steam Workshop | Runs on a `v*.*.*` tag push or manual dispatch: checks out the tag, sets the descriptor version, zips and extracts the descriptor and content directory, and uploads the content directory to Workshop item `3513150774` with a changelog link |
 
 ## 🤝 Contributing
 

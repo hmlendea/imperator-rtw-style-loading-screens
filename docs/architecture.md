@@ -150,23 +150,27 @@ All assets immutable per release version. No runtime modification, no caching la
 
 **Contract**: ZIP with `rtw-style-loading-screens/` at root; BBCode changenote
 
-**Workflow**: `.github/workflows/steam-workshop.yml` triggered on `v*.*.*` tags
+**Workflow**: `.github/workflows/steam-workshop-release.yml` triggered on `v*.*.*` tags or manual dispatch
 
-**Authentication**: `STEAM_USERNAME`, `STEAM_PASSWORD`, `STEAM_2FASEED` secrets
+**Authentication**: `STEAM_USERNAME`, `STEAM_PASSWORD`, `STEAM_2FA_SEED` secrets
 
 **Item ID**: `3513150774` (immutable)
 
 ### Nexus Mods (Outbound)
 
-**Contract**: Manual or automated upload; metadata via Nexus UI
+**Contract**: ZIP with `rtw-style-loading-screens/` at root; automated upload
 
-**Item ID**: `25` (Imperator: Rome category)
+**Workflow**: `.github/workflows/nexus-mods-release.yml` triggered on `v*.*.*` tags or manual dispatch
+
+**Authentication**: `NEXUSMODS_API_KEY` secret
+
+**File ID**: `527539` (immutable)
 
 ### GitHub Releases (Outbound)
 
-**Contract**: ZIP attached to git tag `v*.*.*`
+**Contract**: ZIP attached to a published release
 
-**Automation**: Implicit via GitHub release creation (workflow downloads from release)
+**Workflow**: `.github/workflows/github-release.yml` triggered on `release: types: [ published ]`
 
 ## Dependency Direction
 
@@ -188,13 +192,13 @@ No reverse dependencies. Mod does not call game APIs, does not hook events, does
 ### Release Process
 
 1. Prepare assets in `gfx/loadingscreens/`
-2. Update `descriptor.mod` version
-3. Commit and tag: `git tag v1.0.1 && git push --tags`
-4. GitHub Actions:
-   - Creates GitHub Release with ZIP
-   - Downloads ZIP from release
-   - Uploads to Steam Workshop via `hmlendea/steam-workshop-update`
-5. Manual: Upload same ZIP to Nexus Mods
+2. Commit the changes
+3. Create and push a tag: `git tag v1.0.1 && git push --tags`
+4. Create and publish the GitHub release for the tag
+5. GitHub Actions:
+   - `github-release.yml` attaches `rtw-style-loading-screens_<version>.zip` to the release
+   - `steam-workshop-release.yml` uploads to Steam Workshop via `hmlendea/steam-workshop-update`
+   - `nexus-mods-release.yml` uploads `rtw-style-loading-screens.zip` to Nexus Mods
 
 ### Rollback
 

@@ -11,7 +11,7 @@ The repository owns:
 - Ten DDS loading screen images (`load_0.dds` through `load_9.dds`) at 4K resolution
 - A mod descriptor (`descriptor.mod`) declaring metadata and game version compatibility
 - A thumbnail image (`thumbnail.png`) for launcher and Workshop display
-- Distribution pipeline configuration (GitHub Actions workflow for Steam Workshop)
+- Distribution pipeline configuration (GitHub Actions workflows for GitHub Release, Nexus Mods, and Steam Workshop)
 - Project documentation and governance files (README, CONTRIBUTING, CODE_OF_CONDUCT, PRIVACY, SECURITY, LICENSE)
 
 The repository deliberately does not own:

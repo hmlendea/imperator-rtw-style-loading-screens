@@ -177,7 +177,7 @@ flowchart LR
 | Imperator: Rome Mod Loader | Inbound (game reads mod) | `descriptor.mod` format; `supported_version` semantic versioning; mount path `mod/rtw-style-loading-screens` | Paradox Interactive | Mod disabled or ignored if `supported_version` mismatch or descriptor malformed |
 | Imperator: Rome Virtual Filesystem | Inbound (game reads assets) | `gfx/loadingscreens/load_0.dds` … `load_9.dds` present and valid DDS | Paradox Interactive | Falls back to vanilla loading screen if file missing or corrupt |
 | Steam Workshop | Outbound (publish) | ZIP archive with mod directory at root; `changenote` in BBCode | Valve / Maintainers | Publication fails; manual intervention required |
-| Nexus Mods | Outbound (publish) | ZIP archive with mod directory at root; metadata via Nexus UI | Nexus Mods / Maintainers | Publication fails; manual intervention required |
+| Nexus Mods | Outbound (publish) | ZIP archive with mod directory at root; automated upload through `Nexus-Mods/upload-action` | Nexus Mods / Maintainers | Publication fails; re-run workflow |
 | GitHub Releases | Outbound (publish) | ZIP archive attached to Git tag `v*.*.*` | GitHub / Maintainers | Release draft remains unpublished |
 
 ## 🧭 Dependency Direction and Rules
@@ -217,7 +217,7 @@ The principal dependency rules are:
 | Loading screen filenames (`load_0.dds` … `load_9.dds`) | Maintainers | Exact names and count (10 files) | Manual: verify files exist in `gfx/loadingscreens/` | Do not rename or change count without game mod API change |
 | DDS format and resolution | Maintainers | Valid DDS readable by Imperator: Rome; 4K resolution | Manual: load each loading screen in-game; verify no visual artefacts | Re-export if game rendering pipeline changes |
 | Steam Workshop item ID (`3513150774`) | Maintainers | Stable across releases | Automated: GitHub Actions workflow publishes to same item ID | Never change; new item ID would break existing subscriptions |
-| Nexus Mods ID (`25` for Imperator: Rome) | Maintainers | Stable across releases | Manual: verify Nexus Mods page updates correctly | Never change |
+| Nexus Mods file ID (`527539`) | Maintainers | Stable across releases | Automated: `nexus-mods-release.yml` uploads to the same file ID | Never change |
 
 ## ✅ Testing and Verification
 
@@ -241,7 +241,7 @@ Execute the principal manual verification with:
 - **DDS Format Lock-in:** The game only reads DDS files for loading screens. Other formats (PNG, JPG) are ignored.
 - **Game Version Coupling:** `descriptor.mod` declares `supported_version="2.0.*"`. A game major version update (e.g., 3.0) requires updating this field and re-testing.
 - **No Code Extension Points:** The mod cannot add new loading screens, randomise selection, or implement conditional logic. It is purely a 1:1 asset replacement.
-- **Distribution Channel Immutability:** Steam Workshop item ID and Nexus Mods ID are fixed at creation. Migrating to new IDs would orphan existing subscribers.
+- **Distribution Channel Immutability:** Steam Workshop item ID and Nexus Mods file ID are fixed at creation. Migrating to new IDs would orphan existing subscribers.
 
 ## 🔧 Extension Points
 
@@ -257,7 +257,7 @@ No intentional extension points exist. The mod is a closed asset set. Future ext
 | Mod Descriptor | `rtw-style-loading-screens/descriptor.mod` |
 | Loading Screen Assets | `rtw-style-loading-screens/gfx/loadingscreens/` |
 | Thumbnail | `rtw-style-loading-screens/thumbnail.png` |
-| Release Packaging (GitHub Actions) | `.github/workflows/steam-workshop.yml` |
+| Release Packaging (GitHub Actions) | `.github/workflows/` (`github-release.yml`, `nexus-mods-release.yml`, `steam-workshop-release.yml`) |
 | Funding Configuration | `.github/FUNDING.yml` |
 | Documentation | `README.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `PRIVACY.md`, `SECURITY.md`, `LICENSE` |
 

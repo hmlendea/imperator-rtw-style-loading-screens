@@ -14,7 +14,7 @@ This is a **content-only mod** for Imperator: Rome (game version 2.0.x) that rep
 - **10 DDS assets** (4K, BC3/DXT5 compression) in `rtw-style-loading-screens/gfx/loadingscreens/`
 - **1 descriptor.mod** (Clausewitz script) defining mod metadata
 - **1 thumbnail.png** for launcher/Workshop display
-- **1 GitHub Actions workflow** for Steam Workshop publishing
+- **3 GitHub Actions workflows** for GitHub Release, Nexus Mods, and Steam Workshop publishing
 - **Root documentation** (README, ARCHITECTURE, SECURITY, PRIVACY, LICENSE, CODE_OF_CONDUCT, CONTRIBUTING)
 - **This documentation set** (19 files under `docs/`)
 
@@ -34,7 +34,9 @@ No code, no runtime, no configuration, no database, no API, no logging.
 | CODE_OF_CONDUCT.md | Community standards | [CODE_OF_CONDUCT.md](../CODE_OF_CONDUCT.md) |
 | CONTRIBUTING.md | Contribution guidelines | [CONTRIBUTING.md](../CONTRIBUTING.md) |
 | rtw-style-loading-screens.mod | Steam Workshop metadata | [rtw-style-loading-screens.mod](../rtw-style-loading-screens.mod) |
-| .github/workflows/steam-workshop.yml | CI/CD pipeline | [steam-workshop.yml](../.github/workflows/steam-workshop.yml) |
+| .github/workflows/github-release.yml | CI/CD pipeline (GitHub Release) | [github-release.yml](../.github/workflows/github-release.yml) |
+| .github/workflows/nexus-mods-release.yml | CI/CD pipeline (Nexus Mods) | [nexus-mods-release.yml](../.github/workflows/nexus-mods-release.yml) |
+| .github/workflows/steam-workshop-release.yml | CI/CD pipeline (Steam Workshop) | [steam-workshop-release.yml](../.github/workflows/steam-workshop-release.yml) |
 
 ---
 
